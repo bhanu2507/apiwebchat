@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--meta http-equiv="refresh" content="1;url=http://www.botchallenge.in/" /-->
+    <title>ATMECS BOT Challenge</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+    .modal.in .lab-modal-body {
+        position:absolute;
+        bottom:120px;
+        right:10px;
+        margin:0px;
+    }
+    .lab-modal-body {
+        -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+        -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+        -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+        transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    }
+
+    #chaticon {
+        -webkit-filter: drop-shadow(10px 10px 10px #111);
+        filter: drop-shadow(5px 5px 5px #222);
+        animation: bounce 1s infinite alternate;
+        -webkit-animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+        from {
+            transform: translateY(0px);
+        }
+        to {
+            transform: translateY(-15px);
+        }
+    }
+    @-webkit-keyframes bounce {
+        from {
+            transform: translateY(0px);
+        }
+        to {
+            transform: translateY(-15px);
+        }
+    }
+</style>
+<body>
+<div class="container">
+    <!-- Trigger the modal with a button -->
+    <div id="chaticon" style="border:0px; position:fixed; bottom:20px; right:30px;">
+        <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-placement="top" data-target="#myModal">Open Small Modal</button-->
+<input type="image" src="chatbot.png" data-toggle="modal" data-placement="top" data-target="#myModal" style="outline:none;"/>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="lab-modal-body modal-sm">
+            <!--div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div-->
+            <iframe src='http://localhost:2100/apichat.html' height="300px" style="border-radius: 10px;"></iframe>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

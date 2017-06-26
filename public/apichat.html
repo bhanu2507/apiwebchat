@@ -1,0 +1,108 @@
+<html>
+<head>
+    <title>API Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://unpkg.com/botframework-webchat/botchat.css" rel="stylesheet" />
+    <link href="chat.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var accessToken = "10f63b41df1e4eb2990793a91d8a7d26";
+        var baseUrl = "https://api.api.ai/v1/";
+        $(document).ready(function() {
+            $("#input").keypress(function(event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    send();
+                }
+            });
+            $("#rec").click(function(event) {
+                switchRecognition();
+            });
+        });
+        /*
+        var recognition;
+        function startRecognition() {
+            recognition = new webkitSpeechRecognition();
+            recognition.onstart = function(event) {
+                updateRec();
+            };
+            recognition.onresult = function(event) {
+                var text = "";
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    text += event.results[i][0].transcript;
+                }
+                setInput(text);
+                stopRecognition();
+            };
+            recognition.onend = function() {
+                stopRecognition();
+            };
+            recognition.lang = "en-US";
+            recognition.start();
+        }
+
+        function stopRecognition() {
+            if (recognition) {
+                recognition.stop();
+                recognition = null;
+            }
+            updateRec();
+        }
+        function switchRecognition() {
+            if (recognition) {
+                stopRecognition();
+            } else {
+                startRecognition();
+            }
+        }
+        function setInput(text) {
+            $("#input").val(text);
+            send();
+        }
+        function updateRec() {
+            $("#rec").text(recognition ? "Stop" : "Speak");
+        }*/
+        function send() {
+            var text = $("#input").val();
+
+            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
+            $.ajax({
+                type: "POST",
+                url: baseUrl + "query?v=20150910",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    "Authorization": "Bearer " + accessToken
+                },
+                data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+                success: function(data) {
+                    setResponse(JSON.stringify(data, undefined, 2));
+                },
+                error: function() {
+                    setResponse("Internal Server Error");
+                }
+            });
+            $('#input').val("");
+            //setResponse("Loading...");
+        }
+        function setResponse(val) {
+            $("#response").text(val);
+            speech = $.parseJSON(val);
+            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date +"</div></div>";
+            var objDiv = document.getElementById("bot");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+    </script>
+
+</head>
+<body>
+<div class="panel">
+<div class="header">ATMECS BOT Challenge</div>
+<div id="bot" class="botclass"></div>
+<div class='console'>
+    <input id="input" type="text" class="textin"> <!--button id="rec">Speak</button-->
+    <!--br>Response<br> <textarea id="response" cols="40" rows="20"></textarea-->
+</div>
+</div>
+</body>
+</html>
