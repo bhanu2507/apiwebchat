@@ -88,7 +88,7 @@
         function setResponse(val) {
             $("#response").text(val);
             speech = $.parseJSON(val);
-            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date +"</div></div>";
+            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
             var objDiv = document.getElementById("bot");
             objDiv.scrollTop = objDiv.scrollHeight;
         }
