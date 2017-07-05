@@ -127,7 +127,7 @@ div.calloutright {
     padding: 8px;
     border-radius: 3px;
     box-shadow: 0px 0px 5px #999;
-    margin: 5px;
+    margin: 0px;
     min-height: 15px;
     border: 1px solid orange;
     margin-left: 10px;
@@ -183,5 +183,5 @@ div.calloutright {
     clear: both;
     color: #999;
     font-size: 11px;
-    margin-top: 1px;
+    margin-top: 2px;
 }
