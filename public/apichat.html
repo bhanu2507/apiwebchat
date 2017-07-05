@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://unpkg.com/botframework-webchat/botchat.css" rel="stylesheet" />
     <link href="chat.css" rel="stylesheet" />
+    <link href="animate.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
         var accessToken = "10f63b41df1e4eb2990793a91d8a7d26";
@@ -64,8 +65,8 @@
         }*/
         function send() {
             var text = $("#input").val();
-
-            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
+            var d = document.getElementById('bot').innerHTML;
+            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
             $.ajax({
                 type: "POST",
                 url: baseUrl + "query?v=20150910",
@@ -83,12 +84,19 @@
                 }
             });
             $('#input').val("");
+            
+              var d = document.getElementById('bot').lastElementChild.innerHTML;
+              document.getElementById('bot').lastElementChild.innerHTML = [d.slice(0, 23), " animated flipInX", d.slice(23)].join('');
             //setResponse("Loading...");
         }
         function setResponse(val) {
             $("#response").text(val);
             speech = $.parseJSON(val);
-            document.getElementById('bot').innerHTML += "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
+            var d = document.getElementById('bot').innerHTML;
+            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
+              var d = document.getElementById('bot').lastElementChild.innerHTML;
+            //  alert([d.slice(0, 24), " animated bounce", d.slice(24)].join(''));
+              document.getElementById('bot').lastElementChild.innerHTML = [d.slice(0, 24), " animated flipInX", d.slice(24)].join('');
             var objDiv = document.getElementById("bot");
             objDiv.scrollTop = objDiv.scrollHeight;
         }
