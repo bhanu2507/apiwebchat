@@ -1,4 +1,6 @@
 @import url("animate.css");
+@import "@material/theme/dist/mdc.theme.css";
+
 
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -20,6 +22,7 @@ div.calloutbig {
     margin: 0px;
     min-height: 60px;
     position: relative;
+    display: inline-block;
 }
 
 .botclass {
@@ -93,16 +96,17 @@ div.calloutleft {
     /*background-color: #444;
     background-image: -moz-linear-gradient(top, #444, #444);*/
     position: relative;
-    color: #000000;
+    color: var(--mdc-theme-text-primary-on-primary);
     padding: 8px;
     border-radius: 3px;
     box-shadow: 0px 0px 5px #999;
     margin: 0px;
     min-height: 15px;
-    border: 1px solid #3a96dd;
-    margin-right: 10px;
+    border: 1px solid var(--mdc-theme-primary);
+    margin-right: 15px;
     float: right;
-    background-color: #3a96dd;
+    background-color: var(--mdc-theme-primary);
+    margin-top: 5px;
     /*text-shadow: 0 0 1px #000;
 
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
@@ -115,24 +119,25 @@ div.calloutleft {
     border: 0.8em solid transparent;
     position: absolute;
     right: -20px;
-    top: 40%;
-    border-left: 10px solid #3a96dd;
+    top: 37%;
+    border-left: 10px solid var(--mdc-theme-primary);
 }
 
 div.calloutright {
     /*background-color: #444;
     background-image: -moz-linear-gradient(top, #444, #444);*/
     position: relative;
-    color: #000000;
+    color: var(--mdc-theme-text-primary-on-accent);
     padding: 8px;
     border-radius: 3px;
     box-shadow: 0px 0px 5px #999;
     margin: 0px;
     min-height: 15px;
-    border: 1px solid orange;
-    margin-left: 10px;
+    border: 1px solid var(--mdc-theme-accent);
+    margin-left: 15px;
     float: left;
-    background-color: orange;
+    background-color: var(--mdc-theme-accent);
+    margin-top: 5px;
     /*text-shadow: 0 0 1px #000;
 
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
@@ -145,8 +150,8 @@ div.calloutright {
     border: 0.8em solid transparent;
     position: absolute;
     left: -20px;
-    top: 40%;
-    border-right: 10px solid orange;
+    top: 37%;
+    border-right: 10px solid var(--mdc-theme-accent);
 }
 
 .scroll {
@@ -171,12 +176,12 @@ div.calloutright {
 
 .message-from-me {
     float: right;
-    margin-right: 10px;
+    margin-right: 60px;
 }
 
 .message-from-bot {
     float: left;
-    margin-left: 10px;
+    margin-left: 60px;
 }
 
 .message-from {
@@ -184,4 +189,28 @@ div.calloutright {
     color: #999;
     font-size: 11px;
     margin-top: 2px;
+}
+
+.image-cropper {
+    max-width: 50px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-cropper img{
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    width: 150%;
+    margin: 0 0 0 -20%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.circular--square {
+    border-radius: 50%;
 }

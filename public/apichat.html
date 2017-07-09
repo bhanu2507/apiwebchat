@@ -2,12 +2,12 @@
 <head>
     <title>API Example</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="https://unpkg.com/botframework-webchat/botchat.css" rel="stylesheet" />
+    <link rel='stylesheet' href='scripts/angular-material/angular-material.css' />
     <link href="chat.css" rel="stylesheet" />
     <link href="animate.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-        var accessToken = '<Replace access token here>';  //Replace access token here
+        var accessToken = '10f63b41df1e4eb2990793a91d8a7d26';  //Replace access token here
         var baseUrl = "https://api.api.ai/v1/";
         $(document).ready(function() {
             $("#input").keypress(function(event) {
@@ -66,7 +66,7 @@
         function send() {
             var text = $("#input").val();
             var d = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
+            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='Chrysanthemum.jpg' width='45px' height='45px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
             $.ajax({
                 type: "POST",
                 url: baseUrl + "query?v=20150910",
@@ -93,7 +93,7 @@
             $("#response").text(val);
             speech = $.parseJSON(val);
             var d = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
+            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='logo.png' width='45px' height='45px' class='circular--square' style='float: left;' /><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
               var d = document.getElementById('bot').lastElementChild.innerHTML;
             //  alert([d.slice(0, 24), " animated bounce", d.slice(24)].join(''));
               document.getElementById('bot').lastElementChild.innerHTML = [d.slice(0, 24), " animated flipInX", d.slice(24)].join('');
@@ -103,9 +103,17 @@
     </script>
 
 </head>
-<body>
+<body ng-app="apiwebchat">
 <div class="panel">
-<div class="header">API.AI Web Chat</div>
+<!--div class="header md-toolbar-tools">API.AI Web Chat</div-->
+    <md-toolbar style="min-height:42px;z-index: 3; background: var(--mdc-theme-background);">
+        <div class="md-toolbar-tools" style="height:37px;">
+            <span md-truncate flex style="color: var(--mdc-theme-text-primary-on-background);">API.AI Webchat</span>
+        </div>
+
+
+            <span flex></span>
+    </md-toolbar>
 <div id="bot" class="botclass"></div>
 <div class='console'>
     <input id="input" type="text" class="textin"> <!--button id="rec">Speak</button-->
@@ -113,4 +121,20 @@
 </div>
 </div>
 </body>
+<script src="scripts/angular/angular.js"></script>
+<script src="scripts/angular-animate/angular-animate.js"></script>
+<script src="scripts/angular-aria/angular-aria.js"></script>
+<script src="scripts/angular-material/angular-material.js"></script>
+<script>
+    angular.module('apiwebchat', ['ngMaterial','ngAnimate','ngAria']).config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default').primaryPalette('pink', {
+          'default': '400', // by default use shade 400 from the pink palette for primary intentions
+          'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
+          'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
+          'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+      }).accentPalette('purple', {
+          'default': '200' // use shade 200 for default, and keep all other shades the same
+      });
+    });
+</script>
 </html>

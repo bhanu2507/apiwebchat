@@ -1,0 +1,46 @@
+{
+  "_from": "@material/theme",
+  "_id": "@material/theme@0.1.5",
+  "_inBundle": false,
+  "_integrity": "sha1-XHvZoZdNjBwOrPA34CNarZxctpk=",
+  "_location": "/@material/theme",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@material/theme",
+    "name": "@material/theme",
+    "escapedName": "@material%2ftheme",
+    "scope": "@material",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@material/theme/-/theme-0.1.5.tgz",
+  "_shasum": "5c7bd9a1974d8c1c0eacf037e0235aad9c5cb699",
+  "_spec": "@material/theme",
+  "_where": "C:\\Users\\bhanu.mokkala\\WebstormProjects\\apiwebchat",
+  "bugs": {
+    "url": "https://github.com/material-components/material-components-web/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Material Components for the web theming system",
+  "homepage": "https://github.com/material-components/material-components-web#readme",
+  "keywords": [
+    "material components",
+    "material design",
+    "theme"
+  ],
+  "license": "Apache-2.0",
+  "name": "@material/theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/material-components/material-components-web.git"
+  },
+  "version": "0.1.5"
+}
