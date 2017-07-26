@@ -66,7 +66,7 @@
         function send() {
             var text = $("#input").val();
             var d = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='Chrysanthemum.jpg' width='45px' height='45px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
+            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='Chrysanthemum.png' width='45px' height='45px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
             $.ajax({
                 type: "POST",
                 url: baseUrl + "query?v=20150910",
