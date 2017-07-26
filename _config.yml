@@ -1,0 +1,12 @@
+#
+# This file contains configuration flags to customize your site
+#
+
+# Name of your site (displayed in the header)
+name: botstyles
+
+theme: jekyll-theme-midnight
+
+# Exclude these files from your production _site
+exclude:
+  - CNAME
