@@ -22,7 +22,7 @@ div.calloutbig {
     margin: 0px;
     min-height: 60px;
     position: relative;
-    display: inline-block;
+    display: block;
 }
 
 .botclass {
@@ -135,7 +135,8 @@ div.calloutright {
     min-height: 15px;
     border: 1px solid var(--mdc-theme-accent);
     margin-left: 15px;
-    float: left;
+    float: right;
+    width: 75%;
     background-color: var(--mdc-theme-accent);
     margin-top: 5px;
     /*text-shadow: 0 0 1px #000;

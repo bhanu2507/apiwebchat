@@ -3,7 +3,6 @@
  */
 
 var express = require("express");
-var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var fetch = require("node-fetch");
 var app = express();

@@ -1,72 +1,37 @@
 <html>
 <head>
     <title>API Example</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel='stylesheet' href='scripts/angular-material/angular-material.css' />
-    <link href="chat.css" rel="stylesheet" />
-    <link href="animate.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel='stylesheet' href='scripts/angular-material/angular-material.css'/>
+    <link href="chat.css" rel="stylesheet"/>
+    <link href="animate.css" rel="stylesheet"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
         var accessToken = '10f63b41df1e4eb2990793a91d8a7d26';  //Replace access token here
         var baseUrl = "https://api.api.ai/v1/";
-        $(document).ready(function() {
-            $("#input").keypress(function(event) {
+        $(document).ready(function () {
+            $("#input").keypress(function (event) {
                 if (event.which == 13) {
                     event.preventDefault();
                     send();
                 }
             });
-            $("#rec").click(function(event) {
+            $("#rec").click(function (event) {
                 switchRecognition();
             });
         });
-        /*
-        var recognition;
-        function startRecognition() {
-            recognition = new webkitSpeechRecognition();
-            recognition.onstart = function(event) {
-                updateRec();
-            };
-            recognition.onresult = function(event) {
-                var text = "";
-                for (var i = event.resultIndex; i < event.results.length; ++i) {
-                    text += event.results[i][0].transcript;
-                }
-                setInput(text);
-                stopRecognition();
-            };
-            recognition.onend = function() {
-                stopRecognition();
-            };
-            recognition.lang = "en-US";
-            recognition.start();
-        }
 
-        function stopRecognition() {
-            if (recognition) {
-                recognition.stop();
-                recognition = null;
-            }
-            updateRec();
-        }
-        function switchRecognition() {
-            if (recognition) {
-                stopRecognition();
-            } else {
-                startRecognition();
-            }
-        }
-        function setInput(text) {
-            $("#input").val(text);
-            send();
-        }
-        function updateRec() {
-            $("#rec").text(recognition ? "Stop" : "Speak");
-        }*/
         function send() {
             var text = $("#input").val();
-            var d = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='Chrysanthemum.png' width='45px' height='45px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>Webuser</div></div>";
+            var d = $('#bot').html();
+            $('#bot').html(
+                d.replace(' animated flipInX', '') +
+                "<div class='calloutbig'>" +
+                    "<img src='chat-2-icon.png' width='45px' height='45px' class='circular--square' style='float: right;' />" +
+                    "<div class='calloutleft'>" + text + "</div>" +
+                    "<div class='message-from message-from-me'>Webuser</div>" +
+                "</div>");
+
             $.ajax({
                 type: "POST",
                 url: baseUrl + "query?v=20150910",
@@ -75,66 +40,53 @@
                 headers: {
                     "Authorization": "Bearer " + accessToken
                 },
-                data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-                success: function(data) {
+                data: JSON.stringify({query: text, lang: "en", sessionId: "somerandomthing"}),
+                success: function (data) {
                     setResponse(JSON.stringify(data, undefined, 2));
                 },
-                error: function() {
+                error: function () {
                     setResponse("Internal Server Error");
                 }
             });
+
             $('#input').val("");
 
-              var d = document.getElementById('bot').lastElementChild.innerHTML;
-              document.getElementById('bot').lastElementChild.innerHTML = [d.slice(0, 23), " animated flipInX", d.slice(23)].join('');
-            //setResponse("Loading...");
+            var d = $('#bot').last().html();
+            $('#bot').last().html([d.slice(0, 23), " animated flipInX", d.slice(23)].join(''));
         }
+
         function setResponse(val) {
             $("#response").text(val);
             speech = $.parseJSON(val);
-            var d = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = d.replace(' animated flipInX', '') + "<div class='calloutbig'><img src='logo.png' width='45px' height='45px' class='circular--square' style='float: left;' /><div class='calloutright'>" + speech.result.fulfillment.speech + "</div><div class='message-from message-from-bot'>botchallengein at "+ new Date().toLocaleString() +"</div></div>";
-              var d = document.getElementById('bot').lastElementChild.innerHTML;
-            //  alert([d.slice(0, 24), " animated bounce", d.slice(24)].join(''));
-              document.getElementById('bot').lastElementChild.innerHTML = [d.slice(0, 24), " animated flipInX", d.slice(24)].join('');
-            var objDiv = document.getElementById("bot");
-            objDiv.scrollTop = objDiv.scrollHeight;
+            var d = $('#bot').html();
+            $('#bot').html(
+                d.replace(' animated flipInX', '') +
+                "<div class='calloutbig'>" +
+                    "<img src='logo.png' width='45px' height='45px' class='circular--square' style='float: left;' />" +
+                    "<div class='calloutright'>" + speech.result.fulfillment.speech + "</div>" +
+                    "<div class='message-from message-from-bot'>botchallengein at " + new Date().toLocaleString() + "</div>" +
+                "</div>");
+            var d = $('#bot').last().html();
+
+            $('#bot').last().html([d.slice(0, 24), " animated flipInX", d.slice(24)].join(''));
+            var objDiv = $('#bot');
+            objDiv.scrollTop(objDiv.height());
         }
     </script>
 
 </head>
-<body ng-app="apiwebchat">
+<body>
 <div class="panel">
-<!--div class="header md-toolbar-tools">API.AI Web Chat</div-->
     <md-toolbar style="min-height:42px;z-index: 3; background: var(--mdc-theme-background);">
         <div class="md-toolbar-tools" style="height:37px;">
-            <span md-truncate flex style="color: var(--mdc-theme-text-primary-on-background);">API.AI Webchat</span>
+            <span style="color: var(--mdc-theme-text-primary-on-background);">API.AI Webchat</span>
         </div>
-
-
-            <span flex></span>
+        <span></span>
     </md-toolbar>
-<div id="bot" class="botclass"></div>
-<div class='console'>
-    <input id="input" type="text" class="textin"> <!--button id="rec">Speak</button-->
-    <!--br>Response<br> <textarea id="response" cols="40" rows="20"></textarea-->
-</div>
+    <div id="bot" class="botclass"></div>
+    <div class='console'>
+        <input id="input" type="text" class="textin">
+    </div>
 </div>
 </body>
-<script src="scripts/angular/angular.js"></script>
-<script src="scripts/angular-animate/angular-animate.js"></script>
-<script src="scripts/angular-aria/angular-aria.js"></script>
-<script src="scripts/angular-material/angular-material.js"></script>
-<script>
-    angular.module('apiwebchat', ['ngMaterial','ngAnimate','ngAria']).config(function($mdThemingProvider) {
-      $mdThemingProvider.theme('default').primaryPalette('pink', {
-          'default': '400', // by default use shade 400 from the pink palette for primary intentions
-          'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
-          'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
-          'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
-      }).accentPalette('purple', {
-          'default': '200' // use shade 200 for default, and keep all other shades the same
-      });
-    });
-</script>
 </html>
