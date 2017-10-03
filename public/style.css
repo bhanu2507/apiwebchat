@@ -1,0 +1,38 @@
+.modal.in .lab-modal-body {
+    position: absolute;
+    bottom: 120px;
+    right: 10px;
+    margin: 0px;
+}
+
+.lab-modal-body {
+    -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+}
+
+#chaticon {
+    -webkit-filter: drop-shadow(10px 10px 10px #111);
+    filter: drop-shadow(5px 5px 5px #222);
+    animation: bounce 1s infinite alternate;
+    -webkit-animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+@-webkit-keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}
