@@ -1,4 +1,4 @@
-# BOT Framework style custom web chat for api.ai agent. 
+# BOT Framework style custom web chat for dialogflow agent. 
 
 Steps to Use : 
 1. Clone the branch to the local drive
